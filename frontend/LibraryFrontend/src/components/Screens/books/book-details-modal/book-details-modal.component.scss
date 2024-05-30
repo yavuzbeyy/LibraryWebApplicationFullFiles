@@ -1,0 +1,52 @@
+.modal-dialog {
+    max-width: 80%;
+  }
+  
+  .modal-content {
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: auto;
+    max-height: calc(100vh - 100px); /* Ekran yüksekliğinin 100 piksel azı kadar maksimum yükseklik */
+    overflow-y: auto; /* İçeriğin boyutundan büyükse kaydırma çubuğunu otomatik olarak ekle */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .modal-body {
+    padding: 20px;
+    flex-grow: 1; /* Modal içeriğinin büyümesine izin vermek için */
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .close {
+    font-size: 2rem;
+    color: #aaa;
+    transition: color 0.3s ease;
+  }
+  
+  .close:hover {
+    color: #f00; /* Kırmızı renk */
+  }
+  
+  .modal-footer {
+    position: sticky;
+    bottom: 0;
+    background-color: #fff; /* Footer'ın arka plan rengini belirtin */
+    padding: 10px;
+    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.1); /* İnce bir gölge efekti */
+    z-index: 1; /* Footer'ın içeriğin üzerine gelmesini sağlar */
+  }
+  
+  .modal-footer button {
+    margin-right: 10px;
+  }
+  

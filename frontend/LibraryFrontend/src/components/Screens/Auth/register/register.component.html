@@ -1,0 +1,60 @@
+<main>
+  <div class="container">
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="d-flex justify-content-center py-4">
+              <a href="index.html" class="logo d-flex align-items-center w-auto">
+                <img src="assets/img/logo.jpg" alt="">
+                <span class="d-none d-lg-block">Kütüphanem</span>
+              </a>
+            </div><!-- End Logo -->
+
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="pt-4 pb-2">
+                  <h5 class="card-title text-center pb-0 fs-4">Hesap Oluştur</h5>
+                </div>
+
+                <form class="row g-3 needs-validation" (ngSubmit)="createUser()" novalidate>
+                  <div class="col-12">
+                    <label for="yourName" class="form-label">Ad - Soyad</label>
+                    <input type="text" name="name" class="form-control" id="yourName" [(ngModel)]="user.name" required>
+                    <div class="invalid-feedback">Lütfen adınızı giriniz.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="yourEmail" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="yourEmail" [(ngModel)]="user.email" required>
+                    <div class="invalid-feedback">Geçerli bir email adresi giriniz.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="yourUsername" class="form-label">Kullanıcı Adı</label>
+                    <input type="text" name="username" class="form-control" id="yourUsername" [(ngModel)]="user.username" required>
+                    <div class="invalid-feedback">Kullanıcı adı belirleyiniz.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="yourPassword" class="form-label">Şifre</label>
+                    <input type="password" name="password" class="form-control" id="yourPassword" [(ngModel)]="user.password" required>
+                    <div class="invalid-feedback">Şifre belirleyiniz.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100" type="submit">Hesap Oluştur</button>
+                  </div>
+                </form>
+
+                <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                  {{ errorMessage }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,40 @@
+<div class="container mt-4">
+    <h2>Kitap Güncelleme</h2>
+    <form (ngSubmit)="updateBook()" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="title" class="form-label">Kitap Adı :</label>
+        <input type="text" id="title" name="title" class="form-control" [(ngModel)]="book.title" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Kitap Özeti :</label>
+        <input type="text" id="description" name="description" class="form-control" [(ngModel)]="book.description" required>
+      </div>
+      <div class="mb-3">
+        <label for="publicationYear" class="form-label">Yayımlanma Tarihi : </label>
+        <input type="number" id="publicationYear" name="publicationYear" class="form-control" [(ngModel)]="book.publicationYear" required>
+      </div>
+      <div class="mb-3">
+        <label for="numberOfPages" class="form-label">Sayfa Sayısı : </label>
+        <input type="number" id="numberOfPages" name="numberOfPages" class="form-control" [(ngModel)]="book.numberOfPages" required>
+      </div>
+      <div class="mb-3">
+        <label for="authorName" class="form-label">Yazar : </label>
+        <select id="authorName" name="authorName" class="form-control" [(ngModel)]="book.authorName" required (change)="setAuthorId()">
+          <option *ngFor="let author of authors" [value]="author.name">{{ author.name }} {{ author.surname }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="categoryName" class="form-label">Kategori : </label>
+        <select id="categoryName" name="categoryName" class="form-control" [(ngModel)]="book.categoryName" required (change)="setCategoryId()">
+          <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+        </select>
+      </div>
+      
+   <!--   <div class="mb-3">
+        <label for="imageFile" class="form-label">Kitap Kapak Resmi : </label>
+        <input type="file" id="imageFile" name="imageFile" (change)="onFileSelected($event)" class="form-control" accept="image/*" required>
+      </div>-->
+      <button type="submit" class="btn btn-primary">Kitabı Güncelle</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,58 @@
+<div>
+  <h2>Kitap İstekleri</h2>
+  <table class="table" *ngIf="isAdmin">
+    <thead>
+      <tr>
+        <th>İstek Oluşturma Tarihi</th>
+        <th>Kitap Adı</th>
+        <th>Kullanıcı Adı</th>
+        <th>Kitap Alış Tarihi</th>
+        <th>Kitap Teslim Tarihi</th>
+        <th>Onay Durumu</th>
+        <th>İşlem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of bookRequests" [ngClass]="{'approved': request.isApproved, 'not-approved': !request.isApproved}">
+        <td>{{ request.createdDate }}</td>
+        <td>{{ request.bookTitle }}</td>
+        <td>{{ request.userName }}</td>
+        <td>{{ request.requestDate }}</td>
+        <td>{{ request.returnDate }}</td>
+        <td> <strong> {{ request.isApproved ? 'Onaylanmadı' : 'Onaylandı' }} </strong></td>
+        <!--  <td>{{ request.isReturned ? 'Evet' : 'Hayır' }}</td>-->
+        <td>
+          <button class="approve-button" *ngIf="isAdmin  && request.isApproved"  (click)="approveRequest(request.id)">Onayla</button>
+          <button class="delete-button" *ngIf="isAdmin" (click)="deleteRequest(request.id)">Sil</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table" *ngIf="!isAdmin">
+    <thead>
+      <tr>
+        <th>İstek Oluşturma Tarihi</th>
+        <th>Kitap Adı</th>
+        <th>Kullanıcı Adı</th>
+        <th>Kitap Alış Tarihi</th>
+        <th>Kitap Teslim Tarihi</th>
+        <th>Onay Durumu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of bookRequests" [ngClass]="{'approved': request.isApproved, 'not-approved': !request.isApproved}">
+        <ng-container *ngIf="request.userName === this.username"> <!-- Kullanıcı adını kontrol et -->
+        <td>{{ request.createdDate }}</td>
+        <td>{{ request.bookTitle }}</td>
+        <td>{{ request.userName }}</td>
+        <td>{{ request.requestDate }}</td>
+        <td>{{ request.returnDate }}</td>
+        <td> <strong> {{ request.isApproved ? 'Onaylanmadı' : 'Onaylandı' }} </strong></td>
+        <!--  <td>{{ request.isReturned ? 'Evet' : 'Hayır' }}</td>-->
+        </ng-container>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>

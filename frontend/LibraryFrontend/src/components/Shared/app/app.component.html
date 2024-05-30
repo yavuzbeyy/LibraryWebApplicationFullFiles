@@ -1,0 +1,136 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-scroll shadow-0" style="background-color: #ffede7;">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/book" routerLinkActive="active">Kütüphanem</a>
+    <button class="navbar-toggler ps-0" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+      aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="d-flex justify-content-start align-items-center">
+        <i class="fas fa-bars"></i>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarExample01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link px-3" routerLink="/book" routerLinkActive="active" aria-current="page">
+            Kitaplar <fa-icon [icon]="bookAtlas"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" routerLink="/author" routerLinkActive="active" aria-current="page">
+            Yazarlar <fa-icon [icon]="pencil"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" routerLink="/category" routerLinkActive="active" aria-current="page">
+            Kategoriler <fa-icon [icon]="paperclip"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" routerLink="/add-book" routerLinkActive="active" aria-current="page" *ngIf="isAdmin">
+            Kitap Ekle <fa-icon [icon]="penToSquare"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" routerLink="/add-category" routerLinkActive="active" aria-current="page" *ngIf="isAdmin">
+            Kategori Ekle <fa-icon [icon]="penToSquare"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" routerLink="/add-author" routerLinkActive="active" aria-current="page" *ngIf="isAdmin">
+            Yazar Ekle  <fa-icon [icon]="penToSquare"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" routerLink="/book-requests" routerLinkActive="active" aria-current="page">
+            Kitap İstekleri <fa-icon [icon]="bookAtlas"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link px-3" routerLink="/chat-users" routerLinkActive="active" aria-current="page">
+            İletişim <fa-icon [icon]="bookAtlas"></fa-icon>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{ username ? username : 'Giriş' }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <div *ngIf="isLoggedIn; else loggedOutMenu">
+              <a class="dropdown-item" (click)="logout()"> <fa-icon [icon]="logoutIcon"></fa-icon>
+                <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+              </a>
+            </div>
+            <ng-template #loggedOutMenu>
+              <!-- Kullanıcı girişi yapılmamışsa -->
+              <a class="dropdown-item" routerLink="/login" routerLinkActive="active">Giriş Yap</a>
+              <a class="dropdown-item" routerLink="/register" routerLinkActive="active">Kayıt Ol</a>
+              <!-- app.component.html -->
+
+
+            </ng-template>
+          </ul>
+        </li>
+        
+      </ul>
+    </div>
+    <!--<router-outlet></router-outlet>-->
+  </div>
+</nav>
+
+<div style="height: 60px;"></div>
+<div class="container mt-5"> 
+  <router-outlet></router-outlet> 
+</div>
+
+
+<div style="height: 60px;"></div>
+
+
+<!-- LiveChat -->
+<div class="position-fixed bottom-0 end-0 mb-5 me-5">
+  <!-- <button class="btn btn-primary" type="button" style="bottom: 0; right: 0;" data-bs-toggle="collapse" data-bs-target="#liveChatCollapse"
+    aria-expanded="false" aria-controls="liveChatCollapse" (click)="getPreviousMessages()">
+    LiveChat
+  </button> -->
+  <div style="background-color: rgb(206, 207, 209); border-radius: 10px; display: flex; flex-direction: row; justify-content: space-between;" 
+  aria-expanded="false" aria-controls="liveChatCollapse">
+  <div *ngIf="isAdmin">
+   <!-- <span (click)="listUsersToChatScreen($event)"> <fa-icon [icon]="faArrowLeftLong"></fa-icon> 
+
+    <div style="max-height: 90px; overflow-y: auto;"  *ngIf="showUserList">
+      <div *ngFor="let user of users" class="chat-message p-3" style="overflow-y: auto;">
+        <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-7.png" width="30" height="30">
+        <div class="chat ml-2 p-3" style="border: 1px solid #fd0000; font-size: 10px; font-family: 'Roboto', sans-serif; border-radius: 0px;" (click)="getPreviousMessagesBySelectedUsername(user.username)"> Kullanıcı : {{ user.username }}</div>
+      </div>
+    </div>
+  </span>
+  --> 
+  </div>
+  
+  <div (click)="getPreviousMessages()" data-bs-toggle="collapse" data-bs-target="#liveChatCollapse"  >
+      LiveChat : {{this.adminSentToHim}} <fa-icon [icon]="faCoffee" ></fa-icon>
+    </div>
+
+   <!--   <span (click)="getPreviousMessages()">  <fa-icon [icon]="faSquareXmark"></fa-icon></span>-->
+      <span  data-bs-toggle="collapse" data-bs-target="#liveChatCollapse" (click)="closeUserList()">  <fa-icon [icon]="faSquareXmark"></fa-icon></span>
+
+  </div>
+  <div class="collapse" id="liveChatCollapse">
+    <div class="card">
+      <div id="liveChatMessages"></div> <!-- Gelen mesajları göstereceğimiz alan -->
+      <div class="form-group px-3">
+        <textarea class="form-control" #chatMessage rows="5" style="font-size: 10px;" placeholder="Lütfen mesajınızı giriniz"></textarea>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 10px; margin-bottom: 10px;">
+        <button class="btn btn-primary" (click)="sendChatMessage(chatMessage.value, username,role)">Gönder</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="height: 60px;"></div>
+<footer class="footer mt-auto py-3">  
+  <div class="container text-center">
+    <span class="text-muted">© 2024 Kütüphanem</span>
+  </div>
+</footer>

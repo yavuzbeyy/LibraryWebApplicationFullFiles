@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="pagetitle" style="margin-bottom: 10px;">
+    <input type="text" [(ngModel)]="filterText" placeholder="Yazar Adıyla Filtrele" (ngModelChange)="applyFilter()">
+  </div>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let author of authors">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img *ngIf="author.imageUrl" [src]="author.imageUrl" class="img-fluid rounded-start" style="max-width: 100%; height: auto;" alt="Author Image">
+              <!-- Yazar resmini göster (varsayılan resim kullanabilirsiniz) -->
+              <img src="assets/img/anonym.jpg" *ngIf="!author.imageUrl" class="img-fluid rounded-start" style="max-width: 100%; height: auto;" alt="Author Image">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ author.name }} {{ author.surname }}</h5>
+                <p class="card-text"> <strong>Doğum Yeri :  </strong>{{ author.placeOfBirth }}</p>
+                <p class="card-text"><strong>Doğum Tarihi :  </strong>{{ author.yearOfBirth }}</p>
+                <button (click)="showAuthorBooks(author.id)" class="btn btn-primary" style="margin-right: 5px;">Kitaplar</button>
+                <button (click)="goToUpdateAuthor(author.id)" *ngIf="isAdmin" class="btn btn-warning" style="margin-right: 5px;">Güncelle</button>
+                <button (click)="deleteAuthor(author.id)" *ngIf="isAdmin" class="delete">Sil</button>
+                <app-books-by-author-id *ngIf="selectedAuthorId === author.id" [authorId]="author.id"></app-books-by-author-id>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

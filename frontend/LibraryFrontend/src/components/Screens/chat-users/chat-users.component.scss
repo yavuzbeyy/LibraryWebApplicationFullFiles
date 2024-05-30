@@ -1,0 +1,89 @@
+.kullanicilar, .gruplar {
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.user-card {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+}
+
+.user-card img {
+    margin-right: 10px;
+}
+
+.user-info {
+    margin-bottom: 10px;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.send-message-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.send-message-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Stil dosyası (Örneğin: styles.css) */
+
+/* Butonlara genel stil */
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+/* Grup Sil butonu */
+.delete-button {
+    background-color: #ff5757;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #e44a4a;
+}
+
+/* Kullanıcı Ekle butonu */
+.add-user-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.add-user-button:hover {
+    background-color: #3e8e41;
+}
+
+/* Grup Ekle butonu */
+.add-new-group-button {
+    background-color: orange; /* Turuncu renk */
+    color: white;
+}
+
+.add-new-group-button:hover {
+    background-color: darkorange; /* Turuncunun biraz koyusu */
+}

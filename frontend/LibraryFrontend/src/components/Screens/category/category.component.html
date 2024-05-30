@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <ng-container *ngFor="let category of categories; let last = last">
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ category.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ category.name }}</h6>
+            <p class="card-text">{{ category.description }}</p>
+            <!-- "Kitapları Gör" butonuna tıklandığında seçilen kategori ID'sini ayarla -->
+            <button (click)="showCategoryBooks(category.id)"  class="btn btn-primary" style="margin-right: 10px;">Kitaplar</button>
+            <button (click)="goToUpdateCategory(category.id)" *ngIf="isAdmin" class="btn btn-warning" style="margin-right: 10px;">Güncelle</button>
+            <button (click)="deleteCategory(category.id)" *ngIf="isAdmin" class="delete">Sil</button>
+            <app-books-by-category-id *ngIf="selectedCategoryId === category.id" [categoryId]="category.id"></app-books-by-category-id>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

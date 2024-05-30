@@ -1,0 +1,36 @@
+
+
+  <main id="main" class="main">
+    <div class="pagetitle" style="margin-bottom: 10px;">
+      <input type="text" [(ngModel)]="filterText" placeholder="Kitap Adıyla Arama" (ngModelChange)="applyFilter()" style="margin-right: 630px;">
+      <input type="text" [(ngModel)]="filterTextAi" placeholder="Kitap İçeriğiyle Arama" style="margin-right: 10px;">
+      <button (click)="searchBooksByContent()">Ara</button>
+    </div>
+    <section class="section">
+      <div class="row">
+        <div class="col-6 col-md-4" *ngFor="let book of books">
+          <!-- Her kitap için kart -->
+          <div class="book-item">
+            <div class="card">
+            <img *ngIf="book.imageUrl" [src]="book.imageUrl" class="card-img-top" alt="Book Image" style="width: auto; height: auto;">
+            <!-- Varsayılan Resim -->
+            <img *ngIf="!book.imageUrl" src="assets/img/book.jpg" class="card-img-top" alt="Default Book Image">
+              <div class="card-body">
+                <h4 class="card-title">{{ book.title }}</h4>
+                <p class="card-text"><strong>Yazar : </strong> {{ book.authorName }} {{ book.authorSurname }}</p>
+                <p class="card-text"><strong>Kategori : </strong> {{ book.categoryName }} </p>
+                <p class="card-text"><strong>Sayfa Sayısı : </strong>{{ book.numberOfPages }}</p>
+                <p class="card-text" [ngStyle]="{'color': book.isAvailable ? 'green' : 'red'}"><strong>Alınabilir mi : </strong>{{ book.isAvailable ? 'Evet' : 'Hayır' }}</p>
+                <button (click)="openBookDetailsModal(book)" class="btn btn-primary" style="margin-right: 5px; margin-bottom: 5px;"  >Detay</button>
+                <button (click)="goToUpdateBook(book.id)" *ngIf="isAdmin" class="btn btn-warning" style="margin-right: 5px;">Düzenle</button>
+                <button (click)="deleteBook(book.id)" class="delete" *ngIf="isAdmin">Sil</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+

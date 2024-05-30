@@ -1,0 +1,80 @@
+.book-item {
+  margin-bottom: 20px;
+  height: 50%;
+  width: 120%;
+}
+
+.card {
+  width: 50%;
+}
+
+.card-img-top {
+  width: 10%;
+  height: auto;
+}
+
+.card-title {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.book-item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+button.delete {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+button.delete:hover {
+  background-color: #c82333;
+}
+
+button.update {
+  background-color: #ffc107;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+button.update:hover {
+  background-color: #ffa500;
+}
+
+/* styles.scss veya books.component.scss dosyasında */
+.pagetitle input[type="text"] {
+  padding: 10px;
+  border: 1px solid #d18989;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 19%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.pagetitle input[type="text"]::placeholder {
+  color: #999;
+}
+
+.pagetitle input[type="text"]:focus {
+  border-color: #007bff;
+}
+

@@ -1,0 +1,16 @@
+{
+  "name": "mssql-connector8",
+  "config": {
+    "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+    "tasks.max": "1",
+    "database.hostname": "192.168.1.110",
+    "database.port": "1433",
+    "database.user": "admin",
+    "database.password": "benadmin",
+    "database.dbname": "KutuphaneDbNew",
+    "database.ssl.trust.server.certificate": "true",
+    "database.server.name": "192.168.1.110",
+    "database.history.kafka.bootstrap.servers": "192.168.1.110:9092",
+    "database.history.kafka.topic": "database-flow"
+  }
+}

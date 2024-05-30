@@ -1,0 +1,52 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Padding artırıldı */
+  text-align: left;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr.approved {
+  background-color: #00FF00; /* Onaylanmış durum için yeşil arka plan */
+  color: #00FF00;
+}
+
+.table tbody tr.not-approved {
+  background-color: #FFC0CB; /* Onaylanmamış durum için açık pembe arka plan */
+  color: #FFC0CB;
+}
+
+.approve-button, .reject-button, .delete-button {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.approve-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.reject-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}

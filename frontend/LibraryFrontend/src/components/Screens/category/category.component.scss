@@ -1,0 +1,57 @@
+/* Sil düğmesi için stil */
+button.delete {
+  background-color: #dc3545; 
+  color: #fff; 
+  padding: 8px 16px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer;
+  font-size: 14px; 
+  transition: background-color 0.3s ease; 
+  margin-right: 10px; 
+}
+
+button.delete:hover {
+  background-color: #c82333; 
+}
+
+button.update {
+  background-color: #ffc107; 
+  color: #fff; 
+  padding: 8px 16px; 
+  border: none;
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 14px; 
+  transition: background-color 0.3s ease; 
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+button.update:hover {
+  background-color: #ffa500; 
+}
+
+/* Kart hover efekti */
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Kartın alt kısmına gölge ekleyerek belirginleştirme */
+  transform: translateY(-5px); /* Kartı yukarı doğru hafifçe kaydırma */
+}
+
+/* Kart içindeki butonlara hover efekti */
+.card:hover .btn-primary {
+  background-color: #007bff; /* "Kitapları Gör" butonunun hover rengi */
+}
+
+.card:hover .update:hover,
+.card:hover .delete:hover {
+  transform: translateY(-2px); /* Butonların hafifçe yukarı kaydırma */
+}
+
+.card:hover .update:hover {
+  background-color: #ffa500; /* "Güncelle" butonunun hover rengi */
+}
+
+.card:hover .delete:hover {
+  background-color: #c82333; /* "Sil" butonunun hover rengi */
+}

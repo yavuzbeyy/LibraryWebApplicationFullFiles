@@ -1,0 +1,54 @@
+<!-- Kullanıcılar Bölümü -->
+<div class="kullanicilar" *ngIf="this.appComponent.isAdmin">
+    <h1>Kullanıcılar</h1>
+    <div class="card-container">
+        <div *ngFor="let user of users" class="user-card">
+            <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-7.png" width="30" height="30">
+            <div class="user-info">
+                <div> <strong>{{ user.username }}</strong></div>
+                <div>{{ user.name}} {{ user.surname}}</div>
+                <div>{{ user.email}}</div>
+            </div>
+            <button class="button add-user-button" (click)="this.appComponent.getPreviousMessagesBySelectedUsername(user.username)">Mesaj Gönder</button>
+            
+        </div>
+    </div>
+</div>
+
+<!--  Admin Gruplar Bölümü -->
+<div class="gruplar" *ngIf="this.appComponent.isAdmin">
+    <h1 >Gruplar</h1>
+    <button class="button add-new-group-button" (click)="addNewGroup()" style="margin-bottom: 10px;">Grup Ekle</button> <!-- margin-bottom ile butonun altında 10 piksel boşluk bırakıyoruz -->
+    <div class="card-container">
+        <div *ngFor="let group of groups" class="user-card">
+            <img src="https://img.icons8.com/office/48/000000/user-group-man-woman.png" width="30" height="30">
+            <div class="user-info">
+                <div><h4>{{ group.name }}</h4></div>
+                <!-- Buraya grup üyeleri veya diğer bilgiler eklenebilir -->
+            </div>
+            <p> <strong>Kullanıcılar</strong></p>
+            <p>{{group.usernames}}</p>
+            <button class="button delete-button" (click)="deleteGroup(group.id)" style="margin-right: 10px; margin-bottom: 10px;">Grubu Sil</button>
+            <button class="button add-new-group-button" (click)="this.appComponent.getPreviousMessagesByGroupname(group.name)">Mesaj Gönder</button>
+            <button class="button add-user-button" (click)="addUserToGroup(group.id)">Kullanıcı Ekle</button>
+        </div>
+    </div>
+</div>
+
+<!-- Kullanıcılar için Gruplar Bölümü -->
+<div class="gruplar" *ngIf="!this.appComponent.isAdmin">
+    <h1 >Gruplar</h1>
+    <div class="card-container">
+        <div *ngFor="let group of groups" class="user-card">
+            <img src="https://img.icons8.com/office/48/000000/user-group-man-woman.png" width="30" height="30">
+            <div class="user-info">
+                <div><h4>{{ group.name }}</h4></div>
+                <!-- Buraya grup üyeleri veya diğer bilgiler eklenebilir -->
+            </div>
+            <p> <strong>Kullanıcılar</strong></p>
+            <p>{{group.usernames}}</p>
+            <button class="button add-new-group-button" (click)="this.appComponent.getPreviousMessagesByGroupname(group.name)">Mesaj Gönder</button>
+        </div>
+    </div>
+</div>
+

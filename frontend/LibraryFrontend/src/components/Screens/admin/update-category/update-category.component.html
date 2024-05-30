@@ -1,0 +1,15 @@
+<div class="container mt-4">
+    <h2>Kategori Güncelleme</h2>
+    <form (ngSubmit)="updateCategory()" novalidate>
+      <div class="mb-3">
+        <label for="name" class="form-label">Kategori Adı:</label>
+        <input type="text" id="name" name="name" class="form-control" [(ngModel)]="category.name" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Kategori Açıklaması:</label>
+        <textarea id="description" name="description" class="form-control" [(ngModel)]="category.description" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Güncelle</button>
+    </form>
+  </div>
+  

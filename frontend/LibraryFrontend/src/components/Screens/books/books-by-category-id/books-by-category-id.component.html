@@ -1,0 +1,24 @@
+<div class="container" *ngIf="isOpen && books && books.length > 0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Kitap Adı</th>
+          <th scope="col">Yayımlanma Tarihi</th>
+          <th scope="col">Sayfa Sayısı</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.title }}</td>
+          <td>{{ book.publicationYear }}</td>
+          <td>{{ book.numberOfPages }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="closeComponent()" class="btn btn-secondary">Kapat</button>
+  </div>
+  <div class="container" *ngIf="isOpen && !(books && books.length > 0)">
+    <p>Kitap bulunamadı...</p>
+    <button (click)="closeComponent()" class="btn btn-secondary">Kapat</button>
+  </div>
+  

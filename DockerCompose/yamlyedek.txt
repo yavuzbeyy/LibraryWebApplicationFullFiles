@@ -1,0 +1,69 @@
+version: '2'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 52181:2181
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - 59092:59092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:59092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  kafka-admin:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-admin
+    ports:
+      - "8095:8080" # Dış portu 8095'e değiştirildi
+    restart: always
+    depends_on:
+      - kafka
+      - zookeeper
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8015:8080 # Dış portu 8015'e değiştirildi
+
+  kafka_connect:
+    container_name: kafka_connect
+    image: debezium/connect
+    ports:
+      - '8083:8083'
+    environment:
+      - BOOTSTRAP_SERVERS=kafka:9092
+      - GROUP_ID=medium_debezium
+      - CONFIG_STORAGE_TOPIC=my_connect_configs
+      - OFFSET_STORAGE_TOPIC=my_connect_offsets
+      - STATUS_STORAGE_TOPIC=my_connect_statuses
+      - DATABASE_SERVER_NAME=192.168.20.104, 1433
+      - DATABASE_DBNAME=KutuphaneDbNew
+      - DATABASE_USER=admin
+      - DATABASE_PASSWORD=benadmin
+      - DATABASE_CONNECT_TIMEOUT=30
+      - DATABASE_ENCRYPT=True
+      - DATABASE_TRUST_SERVER_CERTIFICATE=True
+      - DATABASE_APPLICATION_INTENT=ReadWrite
+      - DATABASE_MULTI_SUBNET_FAILOVER=False
+      - CONNECT_PLUGIN_PATH=/kafka/connect/debezium
+    volumes:
+      - ./config:/kafka/config
+      - ./debezium:/kafka/connect/debezium
+      - ./mssql-connector:/kafka/connect/mssql-connector
